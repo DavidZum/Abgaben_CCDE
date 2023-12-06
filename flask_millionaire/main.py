@@ -47,7 +47,7 @@ def home():
                 if int(question._level) == level:
                     levelQuestions.append(question)
     currentQuestion = levelQuestions[random.randint(0, (len(levelQuestions) - 1))]
-    if level < 4:    
+    if level < 5:    
         return render_template('index.html', frage=currentQuestion._frage, antworten=currentQuestion._antworten)
     else:
         level = 0
@@ -66,6 +66,9 @@ def question(correct):
         level = 0
     return render_template('feedback.html', feedback=feedback, level=level)
     
+@app.route('/questions')
+def showAllQuestions():
+    return render_template('questions.html', fragen=questions)
 
 
 if __name__ == '__main__':
